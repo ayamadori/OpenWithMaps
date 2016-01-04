@@ -1,0 +1,29 @@
+﻿<Page
+    x:Class="OpenWithMaps.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:OpenWithMaps"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Pivot>
+            <PivotItem Header="Usage">
+                <Grid>
+                    <TextBlock Text="1. Open the supported map site in Edge etc.&#xA;&#xA;2. Select [Share] in the menu.&#xA;&#xA;3. Select [Open with Maps].&#xA;&#xA;4. Same place(etc.) is shown in Maps. Enjoy!" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="About">
+                <StackPanel>
+                    <TextBlock Text="Open with Maps&#xA;Version 1.0.0&#xA;&#xA;Copyright © Ayamadori" Margin="0,0,0,0" TextWrapping="Wrap"/>
+                    <HyperlinkButton Content="https://sites.google.com/site/ayamadori/" NavigateUri="https://sites.google.com/site/ayamadori/" HorizontalContentAlignment="Left" />
+                    <HyperlinkButton Content="Twitter: @ayamadori" NavigateUri="https://twitter.com/ayamadori" HorizontalContentAlignment="Left" />
+                    <HyperlinkButton Content="Mail: ayamadori@gmail.com" NavigateUri="mailto:ayamadori@gmail.com" HorizontalContentAlignment="Left" />
+                    <Button Content="Rate this app" Margin="0,24,0,0" Click="Button_Click" />
+                </StackPanel>
+            </PivotItem>
+        </Pivot>
+
+    </Grid>
+</Page>
