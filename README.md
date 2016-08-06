@@ -22,11 +22,11 @@ GNU GENERAL PUBLIC LICENSE Version 3
 http://www.gnu.org/licenses/gpl-3.0.html
 
 
-## Version History
+## Version History  
 - Version 1.1.0
--- Search by the page title if unsupported URL
--- Pin to the center of Maps app
--- Minof fixes and improvements
+ * Search by the page title if unsupported URL
+ * Pin to the center of Maps app
+ * Minof fixes and improvements
 
 - Version 1.0.0  
-   Initial release
+ * Initial release
