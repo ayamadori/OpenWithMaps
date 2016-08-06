@@ -11,30 +11,44 @@ namespace OpenWithMaps
     {
         // refer to http://user.numazu-ct.ac.jp/~tsato/tsato/geoweb/yahoo_olp/djws/url_arg.html
 
-        private const string uriRegExp = @"^http://map(s\.loco)?\.yahoo\.co\.jp/maps";
+        private const string uriRegExp = @"^http://map(s\.loco)?\.yahoo\.co\.jp/(maps)|(mobile)";
+        private const string intentRegExp = @"^intent:.*http:%2F%2Floco.yahoo.co.jp%2Fplace";
         private double zoomAdjust = -0.5;
 
         public override bool IsMapURI(string uri)
         {
-            return Regex.IsMatch(uri, uriRegExp, RegexOptions.IgnoreCase);
+            return Regex.IsMatch(uri, uriRegExp, RegexOptions.IgnoreCase)
+                | Regex.IsMatch(uri, intentRegExp, RegexOptions.IgnoreCase);
         }
 
-        public override string GetQuery(string uri)
+        public override string GetQuery(string uri, string title)
         {
             string _query = "";
-            String[] _param = (uri.Split('?')[1]).Split('&');
+            string lat = "", lon = "";
+            string[] _param;
+            _param = uri.Split('?')[1].Split('&');
 
             foreach (string _p in _param)
             {
                 if (_p.StartsWith("p=")) // Place?
                     _query += "&where=" + (_p.Split('='))[1];
                 else if (_p.StartsWith("lat=")) // Latitude
-                    _query += "&cp=" + (_p.Split('='))[1];
+                {
+                    lat = (_p.Split('='))[1];
+                    _query += "&cp=" + lat;
+                }
                 else if (_p.StartsWith("lon=")) // Longitude
-                    _query += "~" + (_p.Split('='))[1];
+                {
+                    lon = (_p.Split('='))[1];
+                    _query += "~" + lon;
+                }
                 else if (_p.StartsWith("z=")) // Zoom Level
                     _query += "&lvl=" + (double.Parse((_p.Split('='))[1]) + zoomAdjust);
             }
+
+            // Set collection if not include specific place
+            if (uri.IndexOf("p=") < 0)
+                _query += "&collection=point." + lat + "_" + lon + "_" + Uri.EscapeDataString(title);
 
                 return _query;
         }

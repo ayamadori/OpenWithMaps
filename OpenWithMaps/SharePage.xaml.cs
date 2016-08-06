@@ -1,21 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=234238 を参照してください
@@ -36,62 +25,102 @@ namespace OpenWithMaps
         {
             base.OnNavigatedTo(e);
 
-            // refer to https://msdn.microsoft.com/en-us/library/windows/apps/mt243292.aspx
-            ShareOperation shareOperation = (ShareOperation)e.Parameter;
             string _bingquery = "";
+            GoogleMapsConverter google = new GoogleMapsConverter();
+            BingMapsConverter bing = new BingMapsConverter();
+            YahooMapsJpConverter yahoojp = new YahooMapsJpConverter();
 
-            if (shareOperation.Data.Contains(StandardDataFormats.Uri)) // URI
+            if (e.Parameter is ShareOperation) // Share target
             {
-                string _link = "";
-                Uri uri = await shareOperation.Data.GetUriAsync();
-                _link = uri.AbsoluteUri;
+                // refer to https://msdn.microsoft.com/en-us/library/windows/apps/mt243292.aspx
+                ShareOperation shareOperation = (ShareOperation)e.Parameter;
 
-                Debug.WriteLine("Uri: " + _link);
+                if (shareOperation.Data.Contains(StandardDataFormats.WebLink)) // URI
+                {
+                    Uri uri = await shareOperation.Data.GetWebLinkAsync();
+                    string _link = uri.AbsoluteUri;
+                    string _title = shareOperation.Data.Properties.Title;
 
-                GoogleMapsConverter google = new GoogleMapsConverter();
-                BingMapsConverter bing = new BingMapsConverter();
-                YahooMapsJpConverter yahoojp = new YahooMapsJpConverter();
+                    Debug.WriteLine("WebLink: " + _link);
+
+                    if (google.IsMapURI(_link))
+                    {
+                        Debug.WriteLine("This URI is in Google Maps");
+                        _bingquery = google.GetQuery(_link, _title);
+                    }
+                    else if (yahoojp.IsMapURI(_link))
+                    {
+                        Debug.WriteLine("This URI is in Yahoo Maps(Japan)");
+                        _bingquery = yahoojp.GetQuery(_link, _title);
+                    }
+                    else if (bing.IsMapURI(_link))
+                    {
+                        Debug.WriteLine("This URI is in Bing Maps");
+                        _bingquery = bing.GetQuery(_link, _title);
+                    }
+                    else
+                    {
+                        Debug.WriteLine("This URI is Others");
+                        _bingquery = "where=" + Uri.EscapeDataString(_title);
+                    }
+                }
+                else if (shareOperation.Data.Contains(StandardDataFormats.Text)) // Text
+                {
+                    string _query = await shareOperation.Data.GetTextAsync();
+
+                    Debug.WriteLine("Text: " + _query);
+                    _bingquery = "where=" + Uri.EscapeDataString(_query);
+                }
+            }
+            else if(e.Parameter is Uri) // Intent
+            {
+                Uri uri = (Uri)e.Parameter;
+                string _link = uri.AbsoluteUri;
+                string _title = "";
+
+                Debug.WriteLine("Intent: " + _link);
+
                 if (google.IsMapURI(_link))
                 {
                     Debug.WriteLine("This URI is in Google Maps");
-                    _bingquery = google.GetQuery(_link);
+                    _title = "Google Maps";
+                    _bingquery = google.GetQuery(_link, _title);
                 }
                 else if (yahoojp.IsMapURI(_link))
                 {
                     Debug.WriteLine("This URI is in Yahoo Maps(Japan)");
-                    _bingquery = yahoojp.GetQuery(_link);
+                    _title = "Yahoo! Maps";
+                    _bingquery = yahoojp.GetQuery(_link, _title);
                 }
                 else if (bing.IsMapURI(_link))
                 {
                     Debug.WriteLine("This URI is in Bing Maps");
-                    _bingquery = bing.GetQuery(_link);
+                    _title = "Bing Maps";
+                    _bingquery = bing.GetQuery(_link, _title);
                 }
-            }
-            else if (shareOperation.Data.Contains(StandardDataFormats.Text)) // Text
-            {
-                string _query = await shareOperation.Data.GetTextAsync();
-
-                Debug.WriteLine("Text: " + _query);
-                _bingquery = "where=" + WebUtility.UrlEncode(_query);
+                else
+                {
+                    Debug.WriteLine("This URI is Others");
+                    _bingquery = "where=" + Uri.EscapeDataString(_title);
+                }
             }
 
             // Delay before opening map (I can't understand necessity...)
             // http://blog.okazuki.jp/entry/20120302/1330643881
             await Task.Delay(TimeSpan.FromMilliseconds(1000));
 
-            OpenMaps(_bingquery);
-        }
-
-        private async void OpenMaps(string query)
-        {
+            // Open Maps app
             // refer to https://msdn.microsoft.com/library/windows/apps/mt228341
 
-            var uriNewYork = new Uri(@"bingmaps:?" + query);
+            var uriNewYork = new Uri(@"bingmaps:?" + _bingquery);
 
             // Launch the Windows Maps app
             var launcherOptions = new Windows.System.LauncherOptions();
             launcherOptions.TargetApplicationPackageFamilyName = "Microsoft.WindowsMaps_8wekyb3d8bbwe";
             var success = await Windows.System.Launcher.LaunchUriAsync(uriNewYork, launcherOptions);
+
+            // Exit app
+            Application.Current.Exit();
         }
     }
 }

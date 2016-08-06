@@ -11,12 +11,12 @@
         <Pivot>
             <PivotItem Header="Usage">
                 <Grid>
-                    <TextBlock Text="1. Open the supported map site in Edge etc.&#xA;&#xA;2. Select [Share] in the menu.&#xA;&#xA;3. Select [Open with Maps].&#xA;&#xA;4. Same place(etc.) is shown in Maps. Enjoy!" Margin="0,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                    <TextBlock Margin="8" Text="1. Open the supported map site in the Edge browser etc.&#xA;&#xA;2. Select [Share] in the menu.&#xA;&#xA;3. Select [Open with Maps].&#xA;&#xA;4. Same place(etc.) is shown in Maps. Enjoy!" TextWrapping="Wrap" VerticalAlignment="Top"/>
                 </Grid>
             </PivotItem>
             <PivotItem Header="About">
-                <StackPanel>
-                    <TextBlock Text="Open with Maps&#xA;Version 1.0.0&#xA;&#xA;Copyright © Ayamadori" Margin="0,0,0,0" TextWrapping="Wrap"/>
+                <StackPanel Margin="8">
+                    <TextBlock Text="Open with Maps&#xA;Version 1.1.0&#xA;&#xA;Copyright © Ayamadori" Margin="0,0,0,0" TextWrapping="Wrap"/>
                     <HyperlinkButton Content="https://sites.google.com/site/ayamadori/" NavigateUri="https://sites.google.com/site/ayamadori/" HorizontalContentAlignment="Left" />
                     <HyperlinkButton Content="Twitter: @ayamadori" NavigateUri="https://twitter.com/ayamadori" HorizontalContentAlignment="Left" />
                     <HyperlinkButton Content="Mail: ayamadori@gmail.com" NavigateUri="mailto:ayamadori@gmail.com" HorizontalContentAlignment="Left" />

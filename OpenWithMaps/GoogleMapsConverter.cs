@@ -20,13 +20,13 @@ namespace OpenWithMaps
             return Regex.IsMatch(uri, uriRegExp, RegexOptions.IgnoreCase);
         }
 
-        public override string GetQuery(string uri)
+        public override string GetQuery(string uri, string title)
         {
             string _query = "";
             string[] _param = uri.Substring(uri.IndexOf("maps/") + 5).Split('/', '?');
 
             if (_param[0].StartsWith("@")) // Centroid
-                _query = getCentroid(_param[0]);
+                _query = "collection=" + getCollection(_param[0], title) + getCentroid(_param[0]);
             else if (_param[0].StartsWith("place", StringComparison.OrdinalIgnoreCase)) // Place -> place/(place)/(centroid)
                 _query = "where=" + _param[1] + getCentroid(_param[2]);
             else if (_param[0].StartsWith("search", StringComparison.OrdinalIgnoreCase)) // Search -> search/(query)/(centroid)
@@ -45,6 +45,16 @@ namespace OpenWithMaps
             string[] _point = param.Split(new char[] { '@', ',', 'z' }, StringSplitOptions.RemoveEmptyEntries);
             _centroid = "&cp=" + _point[0] + "~" + _point[1] + "&lvl=" + (double.Parse(_point[2]) + zoomAdjust);
             return _centroid;
+        }
+
+        // Get Collection
+        // ->  @(latitude),(longitude),(zoomlevel)z
+        private string getCollection(string param, string title)
+        {
+            string _center = "";
+            string[] _point = param.Split(new char[] { '@', ',', 'z' }, StringSplitOptions.RemoveEmptyEntries);
+            _center = "point." + _point[0] + "_" + _point[1] + "_" + Uri.EscapeDataString(title);
+            return _center;
         }
 
         // Get Waypoint

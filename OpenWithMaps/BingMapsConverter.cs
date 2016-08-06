@@ -18,9 +18,9 @@ namespace OpenWithMaps
             return Regex.IsMatch(uri, uriRegExp, RegexOptions.IgnoreCase);
         }
 
-        public override string GetQuery(string uri)
+        public override string GetQuery(string uri, string title)
         {
-            return (uri.Split('?'))[1].Replace("where1", "where");
+            return uri.Split('?')[1].Replace("where1", "where");
         }
     }
 }

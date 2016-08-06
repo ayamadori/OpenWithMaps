@@ -18,6 +18,7 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
 using Windows.Storage;
 using Windows.Storage.Streams;
+using Windows.ApplicationModel;
 
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 を参照してください
@@ -36,7 +37,7 @@ namespace OpenWithMaps
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            var uriReview = new Uri(@"ms-windows-store://review/?ProductId=9nblggh6jz60");
+            var uriReview = new Uri($"ms-windows-store:REVIEW?PFN={Package.Current.Id.FamilyName}");
             var success = await Windows.System.Launcher.LaunchUriAsync(uriReview);
         }
     }
