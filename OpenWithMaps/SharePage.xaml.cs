@@ -72,38 +72,38 @@ namespace OpenWithMaps
                     _bingquery = "where=" + Uri.EscapeDataString(_query);
                 }
             }
-            else if(e.Parameter is Uri) // Intent
-            {
-                Uri uri = (Uri)e.Parameter;
-                string _link = uri.AbsoluteUri;
-                string _title = "";
+            //else if(e.Parameter is Uri) // Intent
+            //{
+            //    Uri uri = (Uri)e.Parameter;
+            //    string _link = uri.AbsoluteUri;
+            //    string _title = "";
 
-                Debug.WriteLine("Intent: " + _link);
+            //    Debug.WriteLine("Intent: " + _link);
 
-                if (google.IsMapURI(_link))
-                {
-                    Debug.WriteLine("This URI is in Google Maps");
-                    _title = "Google Maps";
-                    _bingquery = google.GetQuery(_link, _title);
-                }
-                else if (yahoojp.IsMapURI(_link))
-                {
-                    Debug.WriteLine("This URI is in Yahoo Maps(Japan)");
-                    _title = "Yahoo! Maps";
-                    _bingquery = yahoojp.GetQuery(_link, _title);
-                }
-                else if (bing.IsMapURI(_link))
-                {
-                    Debug.WriteLine("This URI is in Bing Maps");
-                    _title = "Bing Maps";
-                    _bingquery = bing.GetQuery(_link, _title);
-                }
-                else
-                {
-                    Debug.WriteLine("This URI is Others");
-                    _bingquery = "where=" + Uri.EscapeDataString(_title);
-                }
-            }
+            //    if (google.IsMapURI(_link))
+            //    {
+            //        Debug.WriteLine("This URI is in Google Maps");
+            //        _title = "Google Maps";
+            //        _bingquery = google.GetQuery(_link, _title);
+            //    }
+            //    else if (yahoojp.IsMapURI(_link))
+            //    {
+            //        Debug.WriteLine("This URI is in Yahoo Maps(Japan)");
+            //        _title = "Yahoo! Maps";
+            //        _bingquery = yahoojp.GetQuery(_link, _title);
+            //    }
+            //    else if (bing.IsMapURI(_link))
+            //    {
+            //        Debug.WriteLine("This URI is in Bing Maps");
+            //        _title = "Bing Maps";
+            //        _bingquery = bing.GetQuery(_link, _title);
+            //    }
+            //    else
+            //    {
+            //        Debug.WriteLine("This URI is Others");
+            //        _bingquery = "where=" + Uri.EscapeDataString(_title);
+            //    }
+            //}
 
             // Delay before opening map (I can't understand necessity...)
             // http://blog.okazuki.jp/entry/20120302/1330643881
