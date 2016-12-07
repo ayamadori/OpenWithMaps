@@ -102,6 +102,7 @@
     </Compile>
     <Compile Include="BingMapsConverter.cs" />
     <Compile Include="GoogleMapsConverter.cs" />
+    <Compile Include="KmlConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

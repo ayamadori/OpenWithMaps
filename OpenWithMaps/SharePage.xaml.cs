@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -72,6 +73,11 @@ namespace OpenWithMaps
                     _bingquery = "where=" + Uri.EscapeDataString(_query);
                 }
             }
+            else if(e.Parameter is StorageFile) // KML/KMZ file
+            {
+                KmlConverter kmlfile = new KmlConverter(e.Parameter as StorageFile);
+                _bingquery = await kmlfile.ParseAsync();
+            }
             //else if(e.Parameter is Uri) // Intent
             //{
             //    Uri uri = (Uri)e.Parameter;
@@ -107,17 +113,17 @@ namespace OpenWithMaps
 
             // Delay before opening map (I can't understand necessity...)
             // http://blog.okazuki.jp/entry/20120302/1330643881
-            await Task.Delay(TimeSpan.FromMilliseconds(1000));
+            await Task.Delay(TimeSpan.FromMilliseconds(500));
 
             // Open Maps app
             // refer to https://msdn.microsoft.com/library/windows/apps/mt228341
 
-            var uriNewYork = new Uri(@"bingmaps:?" + _bingquery);
+            var uriBingMaps = new Uri(@"bingmaps:?" + _bingquery);
 
             // Launch the Windows Maps app
             var launcherOptions = new Windows.System.LauncherOptions();
             launcherOptions.TargetApplicationPackageFamilyName = "Microsoft.WindowsMaps_8wekyb3d8bbwe";
-            var success = await Windows.System.Launcher.LaunchUriAsync(uriNewYork, launcherOptions);
+            var success = await Windows.System.Launcher.LaunchUriAsync(uriBingMaps, launcherOptions);
 
             // Exit app
             Application.Current.Exit();
