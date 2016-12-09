@@ -26,21 +26,20 @@
         <uap:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="transparent" />
       </uap:VisualElements>
       <Extensions>
-        <uap:Extension Category="windows.fileTypeAssociation">
-          <uap:FileTypeAssociation Name="openwithmaps">
-            <uap:DisplayName>KML/KMZ file</uap:DisplayName>
-            <uap:EditFlags OpenIsSafe="true" />
-            <uap:SupportedFileTypes>
-              <uap:FileType ContentType="application/vnd.google-earth.kml+xml">.kml</uap:FileType>
-              <uap:FileType ContentType="application/vnd.google-earth.kmz">.kmz</uap:FileType>
-            </uap:SupportedFileTypes>
-          </uap:FileTypeAssociation>
-        </uap:Extension>
         <uap:Extension Category="windows.shareTarget">
           <uap:ShareTarget>
             <uap:DataFormat>Text</uap:DataFormat>
             <uap:DataFormat>WebLink</uap:DataFormat>
           </uap:ShareTarget>
+        </uap:Extension>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="openwithmaps">
+            <uap:DisplayName>KML/KMZ file</uap:DisplayName>
+            <uap:SupportedFileTypes>
+              <uap:FileType ContentType="application/vnd.google-earth.kml+xml">.kml</uap:FileType>
+              <uap:FileType ContentType="application/vnd.google-earth.kmz">.kmz</uap:FileType>
+            </uap:SupportedFileTypes>
+          </uap:FileTypeAssociation>
         </uap:Extension>
       </Extensions>
     </Application>

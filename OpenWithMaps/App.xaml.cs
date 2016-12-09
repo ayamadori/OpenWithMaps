@@ -79,9 +79,6 @@ namespace OpenWithMaps
                 // このとき、必要な情報をナビゲーション パラメーターとして渡して、新しいページを
                 //構成します
                 rootFrame.Navigate(typeof(MainPage), e.Arguments);
-
-                //StorageFile storageFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/test.kml"));
-                //rootFrame.Navigate(typeof(SharePage), storageFile);
             }
             // 現在のウィンドウがアクティブであることを確認します
             Window.Current.Activate();
