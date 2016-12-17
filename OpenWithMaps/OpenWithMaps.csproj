@@ -16,8 +16,8 @@
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>OpenWithMaps_StoreKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>F91E08F7AD798E39561FFFA1E38D7C763ED29668</PackageCertificateThumbprint>
+    <PackageCertificateKeyFile>OpenWithMaps_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>1745C7254961330130C9A804375C5758DA1149D7</PackageCertificateThumbprint>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundle>Auto</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
@@ -94,6 +94,7 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="OpenWithMaps_StoreKey.pfx" />
+    <None Include="OpenWithMaps_TemporaryKey.pfx" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
