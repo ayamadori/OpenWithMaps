@@ -13,23 +13,23 @@
                 <StackPanel>
                     <TextBlock Margin="8" Text="Open URL or Text" Style="{StaticResource SubtitleTextBlockStyle}"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                        <Image Margin="8" Height="36" Source="Assets/MicrosoftEdge.png"/>
+                        <Image Margin="8" Height="48" Source="Assets/MicrosoftEdge.png"/>
                         <TextBlock Margin="8" Text="1. Open website in browser etc." TextWrapping="Wrap"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Border Margin="8" Width="36" Height="36" Background="#FF0078D7">
-                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72D;" FontSize="27"/>
+                        <Border Margin="8" Width="48" Height="48" Background="#FF0078D7">
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72D;" FontSize="36"/>
                         </Border>
                         <TextBlock Margin="8" Text="2. Select [Share] in the menu." TextWrapping="Wrap"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Image Margin="8" Height="36" Source="Assets/Icon.png"/>
+                        <Image Margin="8" Height="48" Source="Assets/Icon.png"/>
                         <TextBlock Margin="8" Text="3. Select [Open with Maps]." TextWrapping="Wrap"/>
                     </StackPanel>
                     <TextBlock Margin="8" Text="URL or Text is shown in Maps app." TextWrapping="Wrap"/>
                     <TextBlock Margin="8,24,8,8" Text="Open KML/KMZ file" Style="{StaticResource SubtitleTextBlockStyle}"/>
                     <StackPanel Orientation="Horizontal">
-                        <Image Margin="8" Height="36" Source="Assets/Icon.png"/>
+                        <Image Margin="8" Height="48" Source="Assets/Icon.png"/>
                         <TextBlock Margin="8" Text="Click(Select) KML/KMZ file."/>
                     </StackPanel>
                     <TextBlock Margin="8" Text="Collection is shown in Maps app." TextWrapping="Wrap"/>
