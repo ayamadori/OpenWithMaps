@@ -45,7 +45,7 @@ namespace OpenWithMaps
             StorageFolder folder = ApplicationData.Current.TemporaryFolder;
             // Clear in temporary folder
             ClearTempFolder();
-            // Need to copy to temporary folder
+            // Need to copy file to temporary folder
             StorageFile temp = await kmzFile.CopyAsync(folder);
             using (ZipArchive archive = ZipFile.OpenRead(temp.Path))
             {

@@ -10,9 +10,30 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Pivot>
             <PivotItem Header="Usage">
-                <Grid>
-                    <TextBlock Margin="8" Text="1. Open the supported map site in the Edge browser etc.&#xA;&#xA;2. Select [Share] in the menu.&#xA;&#xA;3. Select [Open with Maps].&#xA;&#xA;4. Same place(etc.) is shown in Maps. Enjoy!" TextWrapping="Wrap" VerticalAlignment="Top"/>
-                </Grid>
+                <StackPanel>
+                    <TextBlock Margin="8" Text="Open URL or Text" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <Image Margin="8" Height="36" Source="Assets/MicrosoftEdge.png"/>
+                        <TextBlock Margin="8" Text="1. Open website in browser etc." TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Border Margin="8" Width="36" Height="36" Background="#FF0078D7">
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72D;" FontSize="27"/>
+                        </Border>
+                        <TextBlock Margin="8" Text="2. Select [Share] in the menu." TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Margin="8" Height="36" Source="Assets/Icon.png"/>
+                        <TextBlock Margin="8" Text="3. Select [Open with Maps]." TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <TextBlock Margin="8" Text="URL or Text is shown in Maps app." TextWrapping="Wrap"/>
+                    <TextBlock Margin="8,24,8,8" Text="Open KML/KMZ file" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Margin="8" Height="36" Source="Assets/Icon.png"/>
+                        <TextBlock Margin="8" Text="Click(Select) KML/KMZ file."/>
+                    </StackPanel>
+                    <TextBlock Margin="8" Text="Collection is shown in Maps app." TextWrapping="Wrap"/>
+                </StackPanel>
             </PivotItem>
             <PivotItem Header="About">
                 <StackPanel Margin="8">

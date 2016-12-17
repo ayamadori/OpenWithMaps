@@ -119,10 +119,15 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Icon.targetsize-16.png" />
+    <Content Include="Assets\Icon.targetsize-256.png" />
+    <Content Include="Assets\Icon.targetsize-32.png" />
+    <Content Include="Assets\Icon.targetsize-48.png" />
     <Content Include="Assets\Maps.png" />
     <None Include="Package.StoreAssociation.xml">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Assets\MicrosoftEdge.png" />
     <Content Include="Assets\NewStoreLogo.scale-100.png" />
     <Content Include="Assets\NewStoreLogo.scale-125.png" />
     <Content Include="Assets\NewStoreLogo.scale-150.png" />
