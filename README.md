@@ -1,4 +1,4 @@
-1﻿Open with Maps
+Open with Maps
 ==============
 
 A simple complement(helper) for Windows Maps app.  
