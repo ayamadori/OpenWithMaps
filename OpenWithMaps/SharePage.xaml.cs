@@ -113,7 +113,7 @@ namespace OpenWithMaps
 
             // Delay before opening map (I can't understand necessity...)
             // http://blog.okazuki.jp/entry/20120302/1330643881
-            //await Task.Delay(TimeSpan.FromMilliseconds(500));
+            await Task.Delay(TimeSpan.FromMilliseconds(500));
 
             // Open Maps app
             // refer to https://msdn.microsoft.com/library/windows/apps/mt228341

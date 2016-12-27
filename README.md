@@ -1,7 +1,7 @@
 ﻿Open with Maps
 ==============
 
-A simple complement(helper) for Windows Maps app.
+A simple complement(helper) for Windows Maps app.  
 https://www.microsoft.com/ja-jp/store/apps/open-with-maps/9nblggh6jz60
 
 ## Supported URL of Map service
