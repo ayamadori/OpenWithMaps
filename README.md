@@ -1,4 +1,4 @@
-﻿Open with Maps
+1﻿Open with Maps
 ==============
 
 A simple complement(helper) for Windows Maps app.  
@@ -20,7 +20,7 @@ GNU GENERAL PUBLIC LICENSE Version 3
 http://www.gnu.org/licenses/gpl-3.0.html
 
 ## Version History
-- Version 1.2.0 (2016/12/17)
+- Version 1.2.1 (2016/12/27)
  * Support to open KML/KMZ file
  * Simpler description in Usage
  * Remove supporting intent
