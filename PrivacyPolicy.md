@@ -1,3 +1,3 @@
-﻿Privacy policy
+Privacy policy
 =========
-This application may collect your location information via browser, but does NOT publish.
+This application may collect your personal (location) information via browser, but does NOT store or publish.
