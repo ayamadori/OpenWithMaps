@@ -1,10 +1,15 @@
 Open with Maps
 ==============
 
-A simple complement(helper) for Windows Maps app.  
+A simple complement(helper) for the Windows Maps app.  
 https://www.microsoft.com/ja-jp/store/apps/open-with-maps/9nblggh6jz60
 
-## Supported URL of Map service
+## Feature
+- Open URL of map service (ex. Place, Search, Route of Google Maps) in the Maps app via [Share] menu
+- Open text or page title as search in the Maps app via [Share] menu
+- Open KML/KMZ file (ex. exported from Google My Maps) as collection in the Maps app
+
+## Supported URL of map service
 - Google Maps
 - Bing Maps
 - Yahoo! Maps (Japan)
