@@ -28,7 +28,7 @@ namespace OpenWithMaps
             if (_param[0].StartsWith("@")) // Centroid
                 _query = "collection=" + getCollection(_param[0], title) + getCentroid(_param[0]);
             else if (_param[0].StartsWith("place", StringComparison.OrdinalIgnoreCase)) // Place -> place/(place)/(centroid)
-                _query = "collection=" + getCollection(_param[2], _param[1]) + getCentroid(_param[2]);
+                _query = "where=" + _param[1] + getCentroid(_param[2]);
             else if (_param[0].StartsWith("search", StringComparison.OrdinalIgnoreCase)) // Search -> search/(query)/(centroid)
                 _query = "q=" + _param[1] + getCentroid(_param[2]);
             else if (_param[0].StartsWith("dir", StringComparison.OrdinalIgnoreCase)) // Dir(=Route) -> dir/(start)/(goal)/(centroid)

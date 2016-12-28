@@ -24,14 +24,14 @@ namespace OpenWithMaps
         public override string GetQuery(string uri, string title)
         {
             string _query = "";
-            string point = "", lat = "", lon = "";
+            string lat = "", lon = "";
             string[] _param;
             _param = uri.Split('?')[1].Split('&');
 
             foreach (string _p in _param)
             {
                 if (_p.StartsWith("p=")) // Place?
-                    point = (_p.Split('='))[1];
+                    _query += "&where=" + (_p.Split('='))[1];
                 else if (_p.StartsWith("lat=")) // Latitude
                 {
                     lat = (_p.Split('='))[1];
@@ -49,8 +49,6 @@ namespace OpenWithMaps
             // Set collection if not include specific place
             if (uri.IndexOf("p=") < 0)
                 _query += "&collection=point." + lat + "_" + lon + "_" + Uri.EscapeDataString(title);
-            else
-                _query += "&collection=point." + lat + "_" + lon + "_" + point;
 
             return _query;
         }
