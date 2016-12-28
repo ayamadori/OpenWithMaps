@@ -25,6 +25,9 @@ GNU GENERAL PUBLIC LICENSE Version 3
 http://www.gnu.org/licenses/gpl-3.0.html
 
 ## Version History
+- Version 1.2.2 (2016/12/28)
+ * Minor fixes and improvements
+
 - Version 1.2.1 (2016/12/27)
  * Support to open KML/KMZ file
  * Simpler description in Usage
