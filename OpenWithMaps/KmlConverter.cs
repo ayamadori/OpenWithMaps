@@ -51,11 +51,11 @@ namespace OpenWithMaps
             {
                 foreach (ZipArchiveEntry entry in archive.Entries)
                 {
-                    if (entry.FullName.ToString() == "doc.kml")
+                    if (entry.FullName.EndsWith(".kml", StringComparison.OrdinalIgnoreCase))
                     {
                         entry.ExtractToFile(Path.Combine(folder.Path, entry.FullName));
                         // Set KML file
-                        kmlFile = await folder.GetFileAsync("doc.kml");
+                        kmlFile = await folder.GetFileAsync(entry.FullName);
                     }
                 }
             }
@@ -66,19 +66,40 @@ namespace OpenWithMaps
             if (kmzFile != null)
                 await UnzipKmz(kmzFile);
 
-            // https://msdn.microsoft.com/en-us/library/windows/apps/windows.data.xml.dom.xmldocument.aspx
-            XmlDocument kml = await XmlDocument.LoadFromFileAsync(kmlFile);
-            // http://stackoverflow.com/questions/13325541/what-format-is-expected-by-the-namespaces-parameter-in-selectsinglenodens
-            string _ns = "xmlns:x='http://www.opengis.net/kml/2.2'";
-            string _name = "name." + Uri.EscapeDataString(kml.DocumentElement.SelectSingleNodeNS("x:Document/x:name", _ns).InnerText);
-            var elements = kml.DocumentElement.SelectNodesNS("//x:Placemark", _ns);
+            string _name = "name.Collection";
             string _points = "";
-            foreach (var item in elements)
+            try
             {
-                string _placename = Uri.EscapeDataString(item.SelectSingleNodeNS("x:name", _ns).InnerText);
-                string _coordinate = item.SelectSingleNodeNS("x:Point/x:coordinates", _ns).InnerText;
-                string _point = "~point." + _coordinate.Split(',')[1] + "_" + _coordinate.Split(',')[0] + "_" + _placename;
-                _points += _point;
+                // https://msdn.microsoft.com/en-us/library/windows/apps/windows.data.xml.dom.xmldocument.aspx
+                XmlDocument kml = await XmlDocument.LoadFromFileAsync(kmlFile);
+                // http://stackoverflow.com/questions/13325541/what-format-is-expected-by-the-namespaces-parameter-in-selectsinglenodens
+                string _ns = "xmlns:x='http://www.opengis.net/kml/2.2'";
+                _name = "name." + Uri.EscapeDataString(kml.DocumentElement.SelectSingleNodeNS("x:Document/x:name", _ns).InnerText);
+                XmlNodeList elements = kml.DocumentElement.SelectNodesNS("//x:Placemark", _ns);               
+
+                foreach (IXmlNode item in elements)
+                {
+                    string _placename = "";
+                    string _longitude = "";
+                    string _latitude = "";
+                    //Debug.WriteLine("ITEM: " + item.GetXml());
+                    try
+                    {
+                        _placename = Uri.EscapeDataString(item.SelectSingleNodeNS("x:name", _ns).InnerText);
+                        string[] _coordinate = item.SelectSingleNodeNS("*//x:coordinates", _ns).InnerText.Split(',');
+                        _longitude = _coordinate[0];
+                        _latitude = _coordinate[1];
+                        _points += "~point." + _latitude + "_" + _longitude + "_" + _placename;
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine("PARSE ERROR 1: " + e);
+                    }        
+                }          
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("PARSE ERROR 2: " + e);
             }
 
             // Clear in temporary folder

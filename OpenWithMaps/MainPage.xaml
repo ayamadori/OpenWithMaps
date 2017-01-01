@@ -37,7 +37,7 @@
             </PivotItem>
             <PivotItem Header="About">
                 <StackPanel Margin="8">
-                    <TextBlock Text="Open with Maps&#xA;Version 1.2.2&#xA;&#xA;Copyright © Ayamadori" TextWrapping="Wrap"/>
+                    <TextBlock Text="Open with Maps&#xA;Version 1.2.3&#xA;&#xA;Copyright © Ayamadori" TextWrapping="Wrap"/>
                     <HyperlinkButton Content="https://sites.google.com/site/ayamadori/" NavigateUri="https://sites.google.com/site/ayamadori/" HorizontalContentAlignment="Left" />
                     <HyperlinkButton Content="Twitter: @ayamadori" NavigateUri="https://twitter.com/ayamadori" HorizontalContentAlignment="Left" />
                     <HyperlinkButton Content="Privacy Policy" NavigateUri="https://github.com/ayamadori/OpenWithMaps/blob/master/PrivacyPolicy.md" HorizontalContentAlignment="Left" />
