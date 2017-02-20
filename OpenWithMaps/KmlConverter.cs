@@ -17,7 +17,7 @@ namespace OpenWithMaps
         {
             if (file.Name.EndsWith(".kml", StringComparison.OrdinalIgnoreCase)) // KML
             {
-                this.kmlFile = file;
+                kmlFile = file;
             }
             else if (file.Name.EndsWith(".kmz", StringComparison.OrdinalIgnoreCase)) // KMZ
             {
@@ -53,9 +53,10 @@ namespace OpenWithMaps
                 {
                     if (entry.FullName.EndsWith(".kml", StringComparison.OrdinalIgnoreCase))
                     {
-                        entry.ExtractToFile(Path.Combine(folder.Path, entry.FullName));
+                        string filename = kmzFile.DisplayName.Replace(".kmz", "") + ".kml";
+                        entry.ExtractToFile(Path.Combine(folder.Path, filename));
                         // Set KML file
-                        kmlFile = await folder.GetFileAsync(entry.FullName);
+                        kmlFile = await folder.GetFileAsync(filename);
                     }
                 }
             }
@@ -66,7 +67,7 @@ namespace OpenWithMaps
             if (kmzFile != null)
                 await UnzipKmz(kmzFile);
 
-            string _name = "name.Collection";
+            string _name = "name." + Uri.EscapeDataString(kmlFile.DisplayName.Replace(".kml", ""));
             string _points = "";
             try
             {
@@ -74,7 +75,6 @@ namespace OpenWithMaps
                 XmlDocument kml = await XmlDocument.LoadFromFileAsync(kmlFile);
                 // http://stackoverflow.com/questions/13325541/what-format-is-expected-by-the-namespaces-parameter-in-selectsinglenodens
                 string _ns = "xmlns:x='http://www.opengis.net/kml/2.2'";
-                _name = "name." + Uri.EscapeDataString(kml.DocumentElement.SelectSingleNodeNS("x:Document/x:name", _ns).InnerText);
                 XmlNodeList elements = kml.DocumentElement.SelectNodesNS("//x:Placemark", _ns);               
 
                 foreach (IXmlNode item in elements)
@@ -82,7 +82,7 @@ namespace OpenWithMaps
                     string _placename = "";
                     string _longitude = "";
                     string _latitude = "";
-                    //Debug.WriteLine("ITEM: " + item.GetXml());
+
                     try
                     {
                         _placename = Uri.EscapeDataString(item.SelectSingleNodeNS("x:name", _ns).InnerText);
@@ -95,7 +95,9 @@ namespace OpenWithMaps
                     {
                         Debug.WriteLine("PARSE ERROR 1: " + e);
                     }        
-                }          
+                }
+
+                _name = "name." + Uri.EscapeDataString(kml.DocumentElement.SelectSingleNodeNS("*/x:name", _ns).InnerText);
             }
             catch (Exception e)
             {
