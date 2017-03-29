@@ -31,8 +31,14 @@ namespace OpenWithMaps
                 _query = "where=" + _param[1] + getCentroid(_param[2]);
             else if (_param[0].StartsWith("search", StringComparison.OrdinalIgnoreCase)) // Search -> search/(query)/(centroid)
                 _query = "q=" + _param[1] + getCentroid(_param[2]);
-            else if (_param[0].StartsWith("dir", StringComparison.OrdinalIgnoreCase)) // Dir(=Route) -> dir/(start)/(goal)/(centroid)
-                _query = "rtp=" + getWaypoint(_param[1]) + "~" + getWaypoint(_param[2]) + getCentroid(_param[3]);
+            else if (_param[0].StartsWith("dir", StringComparison.OrdinalIgnoreCase)) // Dir(=Route) -> dir/(start)/(point)/---/(goal)/(centroid)
+            {
+                _query = "rtp=";
+                for (int i = 1; i < _param.Length - 2; i++)
+                    _query += getWaypoint(_param[i]) + "~";
+                _query.Remove(_query.Length - 1);
+                _query += getCentroid(_param[_param.Length - 2]);
+            }
 
             return _query;
         }
