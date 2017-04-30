@@ -18,7 +18,7 @@ https://www.microsoft.com/ja-jp/store/apps/open-with-maps/9nblggh6jz60
 - This app can NOT ALWAYS open the Maps app properly.
 
 ## Test
-Tested on Windows 10 Version 1607, Windows 10 Mobile emulator(14393) in Windows 10 SDK, MADOSMA Q501
+Tested on Windows 10 Version 1703, Windows 10 Mobile emulator in Windows 10 SDK(15063), MADOSMA Q501(15063, Release Preview)
 
 ## License
 GNU GENERAL PUBLIC LICENSE Version 3  
