@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace OpenWithMaps
 {
@@ -13,7 +8,7 @@ namespace OpenWithMaps
         // refer to https://moz.com/blog/new-google-maps-url-parameters
 
         private const string uriRegExp = @"^https://www\.google\..*/maps/";
-        private double zoomAdjust = 0.3;
+        private double zoomAdjust = 0;//0.3;
 
         public override bool IsMapURI(string uri)
         {            
@@ -23,21 +18,21 @@ namespace OpenWithMaps
         public override string GetQuery(string uri, string title)
         {
             string _query = "";
-            string[] _param = uri.Substring(uri.IndexOf("maps/") + 5).Split('/', '?');
+            string[] param = uri.Substring(uri.IndexOf("maps/") + 5).Split('/');
 
-            if (_param[0].StartsWith("@")) // Centroid
-                _query = "collection=" + getCollection(_param[0], title) + getCentroid(_param[0]);
-            else if (_param[0].StartsWith("place", StringComparison.OrdinalIgnoreCase)) // Place -> place/(place)/(centroid)
-                _query = "where=" + _param[1] + getCentroid(_param[2]);
-            else if (_param[0].StartsWith("search", StringComparison.OrdinalIgnoreCase)) // Search -> search/(query)/(centroid)
-                _query = "q=" + _param[1] + getCentroid(_param[2]);
-            else if (_param[0].StartsWith("dir", StringComparison.OrdinalIgnoreCase)) // Dir(=Route) -> dir/(start)/(point)/---/(goal)/(centroid)
+            if (param[0].StartsWith("@")) // Centroid
+                _query = $"collection={getCollection(param[0], title)}{getCentroid(param[0])}";
+            else if (param[0].StartsWith("place", StringComparison.OrdinalIgnoreCase)) // Place -> place/(place)/(centroid)
+                _query = $"where={param[1]}{getCentroid(param[2])}";
+            else if (param[0].StartsWith("search", StringComparison.OrdinalIgnoreCase)) // Search -> search/(query)/(centroid)
+                _query = $"q={param[1]}{getCentroid(param[2])}";
+            else if (param[0].StartsWith("dir", StringComparison.OrdinalIgnoreCase)) // Dir(=Route) -> dir/(start)/(point)/---/(goal)/(centroid)
             {
                 _query = "rtp=";
-                for (int i = 1; i < _param.Length - 2; i++)
-                    _query += getWaypoint(_param[i]) + "~";
+                for (int i = 1; i < param.Length - 2; i++)
+                    _query += getWaypoint(param[i]) + "~";
                 _query.Remove(_query.Length - 1);
-                _query += getCentroid(_param[_param.Length - 2]);
+                _query += getCentroid(param[param.Length - 2]);
             }
 
             return _query;
@@ -48,8 +43,8 @@ namespace OpenWithMaps
         private string getCentroid(string param)
         {
             string _centroid = "";
-            string[] _point = param.Split(new char[] { '@', ',', 'z' }, StringSplitOptions.RemoveEmptyEntries);
-            _centroid = "&cp=" + _point[0] + "~" + _point[1] + "&lvl=" + (double.Parse(_point[2]) + zoomAdjust);
+            string[] point = param.Split(new char[] { '@', ',', 'z' }, StringSplitOptions.RemoveEmptyEntries);
+            _centroid = $"&cp={point[0]}~{point[1]}&lvl={double.Parse(point[2]) + zoomAdjust}";
             return _centroid;
         }
 
@@ -58,8 +53,8 @@ namespace OpenWithMaps
         private string getCollection(string param, string title)
         {
             string _center = "";
-            string[] _point = param.Split(new char[] { '@', ',', 'z' }, StringSplitOptions.RemoveEmptyEntries);
-            _center = "point." + _point[0] + "_" + _point[1] + "_" + Uri.EscapeDataString(title);
+            string[] point = param.Split(new char[] { '@', ',', 'z' }, StringSplitOptions.RemoveEmptyEntries);
+            _center = $"point.{point[0]}_{point[1]}_{Uri.EscapeDataString(title)}";
             return _center;
         }
 
@@ -70,12 +65,12 @@ namespace OpenWithMaps
             string _waypoint = "";
             if (param.StartsWith("'"))
             {
-                string[] _temp = param.Split(new char[] { '\'', ',' }, StringSplitOptions.RemoveEmptyEntries);
-                _waypoint = "pos." + _temp[0] + "_" + _temp[1];
+                string[] temp = param.Split(new char[] { '\'', ',' }, StringSplitOptions.RemoveEmptyEntries);
+                _waypoint = $"pos.{temp[0]}_{temp[1]}";
             }
             else if (param.Length > 0)
             {
-                _waypoint = "adr." + param;
+                _waypoint = $"adr.{param}";
             }
             return _waypoint;
         }

@@ -1,24 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-using Windows.ApplicationModel.Activation;
-using Windows.ApplicationModel.DataTransfer;
-using Windows.ApplicationModel.DataTransfer.ShareTarget;
 using Windows.Storage;
-using Windows.Storage.Streams;
 using Windows.ApplicationModel;
+using Windows.System;
 
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 を参照してください
@@ -38,7 +23,29 @@ namespace OpenWithMaps
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             var uriReview = new Uri($"ms-windows-store:REVIEW?PFN={Package.Current.Id.FamilyName}");
-            var success = await Windows.System.Launcher.LaunchUriAsync(uriReview);
+            var success = await Launcher.LaunchUriAsync(uriReview);
+        }
+
+        private async void OpenBrowserButton_Click(object sender, RoutedEventArgs e)
+        {
+            var uriBrowser = new Uri("https://www.google.com/maps/");
+            var success = await Launcher.LaunchUriAsync(uriBrowser);
+        }
+
+        private async void OpenFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            // FileOpenPicker
+            // https://msdn.microsoft.com/ja-jp/library/windows/apps/mt186456.aspx
+
+            var picker = new Windows.Storage.Pickers.FileOpenPicker();
+            picker.FileTypeFilter.Add(".kml");
+            picker.FileTypeFilter.Add(".kmz");
+            StorageFile file = await picker.PickSingleFileAsync();
+
+            if (file != null)
+            {
+                Frame.Navigate(typeof(SharePage), file);
+            }
         }
     }
 }

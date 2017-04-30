@@ -67,29 +67,29 @@ namespace OpenWithMaps
             if (kmzFile != null)
                 await UnzipKmz(kmzFile);
 
-            string _name = "name." + Uri.EscapeDataString(kmlFile.DisplayName.Replace(".kml", ""));
-            string _points = "";
+            string name = "name." + Uri.EscapeDataString(kmlFile.DisplayName.Replace(".kml", ""));
+            string points = "";
             try
             {
                 // https://msdn.microsoft.com/en-us/library/windows/apps/windows.data.xml.dom.xmldocument.aspx
                 XmlDocument kml = await XmlDocument.LoadFromFileAsync(kmlFile);
                 // http://stackoverflow.com/questions/13325541/what-format-is-expected-by-the-namespaces-parameter-in-selectsinglenodens
-                string _ns = "xmlns:x='http://www.opengis.net/kml/2.2'";
+                string _ns = $"xmlns:x='{kml.DocumentElement.NamespaceUri}'";
                 XmlNodeList elements = kml.DocumentElement.SelectNodesNS("//x:Placemark", _ns);               
 
                 foreach (IXmlNode item in elements)
                 {
-                    string _placename = "";
-                    string _longitude = "";
-                    string _latitude = "";
+                    string placename = "";
+                    string longitude = "";
+                    string latitude = "";
 
                     try
                     {
-                        _placename = Uri.EscapeDataString(item.SelectSingleNodeNS("x:name", _ns).InnerText);
+                        placename = Uri.EscapeDataString(item.SelectSingleNodeNS("x:name", _ns).InnerText);
                         string[] _coordinate = item.SelectSingleNodeNS("*//x:coordinates", _ns).InnerText.Split(',');
-                        _longitude = _coordinate[0];
-                        _latitude = _coordinate[1];
-                        _points += "~point." + _latitude + "_" + _longitude + "_" + _placename;
+                        longitude = _coordinate[0];
+                        latitude = _coordinate[1];
+                        points += $"~point.{latitude}_{longitude}_{placename}";
                     }
                     catch (Exception e)
                     {
@@ -97,7 +97,7 @@ namespace OpenWithMaps
                     }        
                 }
 
-                _name = "name." + Uri.EscapeDataString(kml.DocumentElement.SelectSingleNodeNS("*/x:name", _ns).InnerText);
+                name = "name." + Uri.EscapeDataString(kml.DocumentElement.SelectSingleNodeNS("*/x:name", _ns).InnerText);
             }
             catch (Exception e)
             {
@@ -107,7 +107,7 @@ namespace OpenWithMaps
             // Clear in temporary folder
             ClearTempFolder();
 
-            return "collection=" + _name + _points;
+            return $"collection={name}{points}";
         }
     }
 }
