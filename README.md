@@ -29,6 +29,7 @@ http://www.gnu.org/licenses/gpl-3.0.html
   * Support multiple stops when getting directions
   * Faster app loading (applied on Creators Update, Version 1703, Build 15063 or newer)
   * (A little) better handling KML/KMZ file
+  * Remove support for Windows 10 Version 1507
   * Minor fixes and improvements
 
 - Version 1.2.1 (2016/12/27)
