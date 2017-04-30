@@ -25,19 +25,22 @@ GNU GENERAL PUBLIC LICENSE Version 3
 http://www.gnu.org/licenses/gpl-3.0.html
 
 ## Version History
-- Version 1.2.3 (2017/1/1)
- * Minor fixes and improvements
+- Version 1.3.0 (2017/5/1)
+  * Support multiple stops when getting directions
+  * Faster app loading (applied on Creators Update, Version 1703, Build 15063 or newer)
+  * (A little) better handling KML/KMZ file
+  * Minor fixes and improvements
 
 - Version 1.2.1 (2016/12/27)
- * Support to open KML/KMZ file
- * Simpler description in Usage
- * Remove supporting intent
- * Minor fixes and improvements
+  * Support to open KML/KMZ file
+  * Simpler description in Usage
+  * Remove supporting intent
+  * Minor fixes and improvements
 
 - Version 1.1.0 (2016/08/06)
- * Search by the page title if unsupported URL
- * Pin to the center of Maps app
- * Minor fixes and improvements
+  * Search by the page title if unsupported URL
+  * Pin to the center of Maps app
+  * Minor fixes and improvements
 
 - Version 1.0.0 (2015/12/04)  
- * Initial release
+  * Initial release
