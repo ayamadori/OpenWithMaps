@@ -120,11 +120,11 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\OpenWithMaps.png" />
     <Content Include="Assets\Icon.targetsize-16.png" />
     <Content Include="Assets\Icon.targetsize-256.png" />
     <Content Include="Assets\Icon.targetsize-32.png" />
     <Content Include="Assets\Icon.targetsize-48.png" />
-    <Content Include="Assets\Maps.png" />
     <None Include="Package.StoreAssociation.xml">
       <SubType>Designer</SubType>
     </None>
