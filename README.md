@@ -18,18 +18,19 @@ https://www.microsoft.com/ja-jp/store/apps/open-with-maps/9nblggh6jz60
 - This app can NOT ALWAYS open the Maps app properly.
 
 ## Test
-Tested on Windows 10 Version 1607, Windows 10 Mobile emulator(14393) in Windows 10 SDK, MADOSMA Q501
+Tested on Windows 10 Version 1703, Windows 10 Mobile emulator in Windows 10 SDK(15063), MADOSMA Q501(Version 1703, Release Preview)
 
 ## License
 GNU GENERAL PUBLIC LICENSE Version 3  
 http://www.gnu.org/licenses/gpl-3.0.html
 
 ## Version History
-- Version 1.3.0 (2017/5/1)
+- Version 1.3.0 (2017/05/01)
   * Support multiple stops when getting directions
-  * Faster app loading (applied on Creators Update, Version 1703, Build 15063 or newer)
+  * Faster app loading (applied to Creators Update, Version 1703, Build 15063 or newer)
   * (A little) better handling KML/KMZ file
   * Minor fixes and improvements
+  * Remove support for Windows 10 Version 1507
 
 - Version 1.2.1 (2016/12/27)
   * Support to open KML/KMZ file
