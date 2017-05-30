@@ -210,9 +210,11 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+/OpenWithMaps/BundleArtifacts
 /OpenWithMaps/_scale-400.appx
 /OpenWithMaps/_scale-150.appx
 /OpenWithMaps/_scale-125.appx
 /OpenWithMaps/_scale-100.appx
 /OpenWithMaps/_pkginfo.txt
-/OpenWithMaps/BundleArtifacts
+/FeedLadder/Properties/Default.rd.xml
+/FeedLadder/Package.StoreAssociation.xml
