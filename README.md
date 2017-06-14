@@ -1,7 +1,7 @@
 Open with Maps
 ==============
 
-A simple complement(helper) for the Windows Maps app.  
+A simple helper for the Windows Maps app.  
 https://www.microsoft.com/en-us/store/apps/open-with-maps/9nblggh6jz60
 
 ## Feature
@@ -18,7 +18,7 @@ https://www.microsoft.com/en-us/store/apps/open-with-maps/9nblggh6jz60
 - This app can NOT ALWAYS open the Maps app properly.
 
 ## Test
-Tested on Windows 10 Version 1703, Windows 10 Mobile emulator in Windows 10 SDK(15063), MADOSMA Q501(Version 1703, Release Preview)
+Tested on Windows 10 Version 1703, Windows 10 Mobile emulator in Windows 10 SDK(1703), MADOSMA Q501(Version 1703, Release Preview)
 
 ## License
 GNU GENERAL PUBLIC LICENSE Version 3  
@@ -30,7 +30,7 @@ http://www.gnu.org/licenses/gpl-3.0.html
   
 - Version 1.3.0 (2017/05/01)
   * Support multiple stops when getting directions
-  * Faster app loading (applied to Creators Update, Version 1703, Build 15063 or newer)
+  * Faster app loading (applied to Creators Update or newer)
   * (A little) better handling KML/KMZ file
   * Minor fixes and improvements
   * Remove support for Windows 10 Version 1507
