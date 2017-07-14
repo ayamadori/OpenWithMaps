@@ -210,6 +210,8 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+
+# Custom
 /OpenWithMaps/BundleArtifacts
 /OpenWithMaps/_scale-400.appx
 /OpenWithMaps/_scale-150.appx
