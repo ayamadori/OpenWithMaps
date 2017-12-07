@@ -2,7 +2,7 @@ Open with Maps
 ==============
 
 A simple helper for the Windows Maps app.  
-https://www.microsoft.com/en-us/store/apps/open-with-maps/9nblggh6jz60
+https://www.microsoft.com/store/apps/open-with-maps/9nblggh6jz60
 
 ## Feature
 - Open URL of map service (e.g. Place, Search, Route of Google Maps) in the Maps app via [Share] menu
