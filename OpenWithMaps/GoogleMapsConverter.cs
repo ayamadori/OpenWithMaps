@@ -8,7 +8,7 @@ namespace OpenWithMaps
         // refer to https://moz.com/blog/new-google-maps-url-parameters
 
         private const string uriRegExp = @"^https://www\.google\..*/maps/";
-        private double zoomAdjust = 0;//0.3;
+        private double zoomAdjust = -0.5;
 
         public override bool IsMapURI(string uri)
         {            
@@ -23,6 +23,7 @@ namespace OpenWithMaps
             if (param[0].StartsWith("@")) // Centroid
                 _query = $"collection={getCollection(param[0], title)}{getCentroid(param[0])}";
             else if (param[0].StartsWith("place", StringComparison.OrdinalIgnoreCase)) // Place -> place/(place)/(centroid)
+                // ** "where" parameter sometimes find nothing -> Stop to use the parameter
                 _query = $"where={param[1]}{getCentroid(param[2])}";
             else if (param[0].StartsWith("search", StringComparison.OrdinalIgnoreCase)) // Search -> search/(query)/(centroid)
                 _query = $"q={param[1]}{getCentroid(param[2])}";

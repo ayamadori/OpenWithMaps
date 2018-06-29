@@ -79,11 +79,9 @@ namespace OpenWithMaps
                 // http://stackoverflow.com/questions/13325541/what-format-is-expected-by-the-namespaces-parameter-in-selectsinglenodens
                 string _ns = $"xmlns:x='{kml.DocumentElement.NamespaceUri}'";
                 XmlNodeList elements = kml.DocumentElement.SelectNodesNS("//x:Placemark", _ns);
-                //int count = 0;
 
                 foreach (IXmlNode item in elements)
                 {
-                    //if (count > 10) break;
                     string placename = "";
                     string longitude = "";
                     string latitude = "";
@@ -95,7 +93,6 @@ namespace OpenWithMaps
                         longitude = _coordinate[0].Trim();
                         latitude = _coordinate[1].Trim();
                         points += $"~point.{latitude}_{longitude}_{placename}";
-                        //count++;
                     }
                     catch (Exception e)
                     {
