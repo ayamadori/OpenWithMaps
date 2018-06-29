@@ -55,7 +55,7 @@
                 <StackPanel Margin="8">
                     <TextBlock Text="Open with Maps&#xA;Version 1.3.2&#xA;&#xA;Copyright © Ayamadori" TextWrapping="Wrap"/>
                     <HyperlinkButton Content="https://ayamadori.github.io/" NavigateUri="https://ayamadori.github.io/" HorizontalContentAlignment="Left" />
-                    <HyperlinkButton Content="Privacy Policy" NavigateUri="https://github.com/ayamadori/OpenWithMaps/blob/master/PrivacyPolicy.md" HorizontalContentAlignment="Left"/>
+                    <HyperlinkButton Content="Privacy Policy" NavigateUri="https://ayamadori.github.io/OpenWithMaps/PrivacyPolicy.html" HorizontalContentAlignment="Left"/>
                     <Button Content="Rate this app" Margin="0,24,0,0" Click="Button_Click" />
                 </StackPanel>
             </PivotItem>
