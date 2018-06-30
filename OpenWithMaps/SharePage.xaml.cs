@@ -80,24 +80,6 @@ namespace OpenWithMaps
                 _bingquery = await kmlfile.ParseAsync();
             }
 
-            // Get OS Version
-            // https://social.msdn.microsoft.com/Forums/vstudio/en-US/2d8a7dab-1bad-4405-b70d-768e4cb2af96/uwp-get-os-version-in-an-uwp-app
-            string deviceFamilyVersion = AnalyticsInfo.VersionInfo.DeviceFamilyVersion;
-            ulong version = ulong.Parse(deviceFamilyVersion);
-            ulong major = (version & 0xFFFF000000000000L) >> 48;
-            ulong minor = (version & 0x0000FFFF00000000L) >> 32;
-            ulong build = (version & 0x00000000FFFF0000L) >> 16;
-            ulong revision = (version & 0x000000000000FFFFL);
-            var osVersion = $"{major}.{minor}.{build}.{revision}";
-            Debug.WriteLine("OS Version: " + osVersion);
-
-            if (build < 15063) // Older build than Creators Update(=15063)
-            {
-                // Delay before opening browser (I can't understand necessity...)
-                // http://blog.okazuki.jp/entry/20120302/1330643881
-                await Task.Delay(TimeSpan.FromMilliseconds(1000));
-            }
-
             // Open Maps app
             // refer to https://msdn.microsoft.com/library/windows/apps/mt228341
             var uriBingMaps = new Uri(@"bingmaps:?" + _bingquery);
