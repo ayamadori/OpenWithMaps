@@ -18,13 +18,17 @@ https://www.microsoft.com/store/apps/9nblggh6jz60
 - This app can NOT ALWAYS open the Maps app properly.
 
 ## Test
-Tested on Windows 10 Version 1703, Windows 10 Mobile emulator in Windows 10 SDK(1703), MADOSMA Q501(Version 1703, Release Preview)
+Tested on Windows 10 Version 1803
 
 ## License
 GNU GENERAL PUBLIC LICENSE Version 3  
 http://www.gnu.org/licenses/gpl-3.0.html
 
 ## Version History
+- Version 1.3.2 (2018/06/30)
+  * Change icon
+  * Remove support for Windows 10 Version 1607 and older
+  
 - Version 1.3.1 (2017/05/18)
   * Change icon
   
