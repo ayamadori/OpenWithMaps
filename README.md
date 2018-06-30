@@ -18,7 +18,7 @@ https://www.microsoft.com/store/apps/9nblggh6jz60
 - This app can NOT ALWAYS open the Maps app properly.
 
 ## Test
-Tested on Windows 10 Version 1703, Windows 10 Mobile emulator in Windows 10 SDK(1703), MADOSMA Q501(Version 1703, Release Preview)
+Tested on Windows 10 Version 1803
 
 ## License
 GNU GENERAL PUBLIC LICENSE Version 3  
