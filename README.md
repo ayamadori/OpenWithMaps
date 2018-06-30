@@ -25,6 +25,9 @@ GNU GENERAL PUBLIC LICENSE Version 3
 http://www.gnu.org/licenses/gpl-3.0.html
 
 ## Version History
+- Version 1.3.2 (2018/06/30)
+  * Change icon
+  
 - Version 1.3.1 (2017/05/18)
   * Change icon
   
