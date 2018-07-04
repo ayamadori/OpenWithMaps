@@ -5,6 +5,7 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
 using Windows.Storage;
 using Windows.System.Profile;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -78,6 +79,17 @@ namespace OpenWithMaps
             {
                 KmlConverter kmlfile = new KmlConverter(e.Parameter as StorageFile);
                 _bingquery = await kmlfile.ParseAsync();
+
+                if (_bingquery == null)
+                {
+                    var dlg = new MessageDialog("This file can NOT open in this app.", "Unsupported file");
+                    await dlg.ShowAsync();
+
+                    // Exit app
+                    Application.Current.Exit();
+
+                    return;
+                }
             }
 
             // Open Maps app

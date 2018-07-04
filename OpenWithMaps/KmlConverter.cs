@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.Data.Xml.Dom;
 using Windows.Storage;
 using Windows.System.Profile;
+using Windows.UI.Popups;
 
 namespace OpenWithMaps
 {
@@ -86,30 +87,29 @@ namespace OpenWithMaps
                     string longitude = "";
                     string latitude = "";
 
-                    try
-                    {
-                        placename = Uri.EscapeDataString(item.SelectSingleNodeNS("x:name", _ns).InnerText.Trim());
-                        string[] _coordinate = item.SelectSingleNodeNS("*//x:coordinates", _ns).InnerText.Split(',');
-                        longitude = _coordinate[0].Trim();
-                        latitude = _coordinate[1].Trim();
-                        points += $"~point.{latitude}_{longitude}_{placename}";
-                    }
-                    catch (Exception e)
-                    {
-                        Debug.WriteLine("PARSE ERROR 1: " + e);
-                    }        
+                    placename = Uri.EscapeDataString(item.SelectSingleNodeNS("x:name", _ns).InnerText.Trim());
+                    string[] _coordinate = item.SelectSingleNodeNS("*//x:coordinates", _ns).InnerText.Split(',');
+                    longitude = _coordinate[0].Trim();
+                    latitude = _coordinate[1].Trim();
+                    points += $"~point.{latitude}_{longitude}_{placename}";
                 }
 
                 name = "name." + Uri.EscapeDataString(kml.DocumentElement.SelectSingleNodeNS("*/x:name", _ns).InnerText.Trim());
             }
             catch (Exception e)
             {
-                Debug.WriteLine("PARSE ERROR 2: " + e);
+                Debug.WriteLine("PARSE ERROR: " + e);
+
+                // Clear in temporary folder
+                ClearTempFolder();
+
+                return null;
             }
 
             // Clear in temporary folder
             ClearTempFolder();
 
+            // Cut too long URL (at Desktop)
             // https://gist.github.com/wagonli/40d8a31bd0d6f0dd7a5d
             if (AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Desktop" && name.Length + points.Length > MAX_URL_LENGTH)
                 points = points.Remove(points.LastIndexOf("~", MAX_URL_LENGTH - name.Length));
