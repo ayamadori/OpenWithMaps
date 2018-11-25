@@ -82,7 +82,7 @@ namespace OpenWithMaps
 
                 if (_bingquery == null)
                 {
-                    var dlg = new MessageDialog("This file can NOT open in this app.", "Unsupported file");
+                    var dlg = new MessageDialog("The app can NOT open this file.", "Unsupported file");
                     await dlg.ShowAsync();
 
                     // Exit app

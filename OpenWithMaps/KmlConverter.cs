@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Windows.Data.Xml.Dom;
 using Windows.Storage;
 using Windows.System.Profile;
-using Windows.UI.Popups;
 
 namespace OpenWithMaps
 {
@@ -51,18 +50,26 @@ namespace OpenWithMaps
             ClearTempFolder();
             // Need to copy file to temporary folder
             StorageFile temp = await kmzFile.CopyAsync(folder);
-            using (ZipArchive archive = ZipFile.OpenRead(temp.Path))
+            try
             {
-                foreach (ZipArchiveEntry entry in archive.Entries)
+                using (ZipArchive archive = ZipFile.OpenRead(temp.Path))
                 {
-                    if (entry.FullName.EndsWith(".kml", StringComparison.OrdinalIgnoreCase))
+                    foreach (ZipArchiveEntry entry in archive.Entries)
                     {
-                        string filename = kmzFile.DisplayName.Replace(".kmz", "") + ".kml";
-                        entry.ExtractToFile(Path.Combine(folder.Path, filename));
-                        // Set KML file
-                        kmlFile = await folder.GetFileAsync(filename);
+                        if (entry.FullName.EndsWith(".kml", StringComparison.OrdinalIgnoreCase))
+                        {
+                            string filename = kmzFile.DisplayName.Replace(".kmz", "") + ".kml";
+                            entry.ExtractToFile(Path.Combine(folder.Path, filename));
+                            // Set KML file
+                            kmlFile = await folder.GetFileAsync(filename);
+                        }
                     }
                 }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("ERROR: " + e);
+                return;
             }
         }
 
@@ -71,10 +78,12 @@ namespace OpenWithMaps
             if (kmzFile != null)
                 await UnzipKmz(kmzFile);
 
-            string name = "name." + Uri.EscapeDataString(kmlFile.DisplayName.Replace(".kml", ""));
+            string name = "";
             string points = "";
             try
             {
+                name = "name." + Uri.EscapeDataString(kmlFile.DisplayName.Replace(".kml", ""));
+                
                 // https://msdn.microsoft.com/en-us/library/windows/apps/windows.data.xml.dom.xmldocument.aspx
                 XmlDocument kml = await XmlDocument.LoadFromFileAsync(kmlFile);
                 // http://stackoverflow.com/questions/13325541/what-format-is-expected-by-the-namespaces-parameter-in-selectsinglenodens
