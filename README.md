@@ -24,7 +24,7 @@ GNU GENERAL PUBLIC LICENSE Version 3
 http://www.gnu.org/licenses/gpl-3.0.html
 
 ## Version History
-- Version 1.3.3 (2019/05/18)
+- Version 1.3.8 (2019/05/18)
   * (A little) better error handling 
   * Support Arm64 device
   * Minor UI change with feedback button
