@@ -30,10 +30,11 @@ namespace OpenWithMaps
             else if (param[0].StartsWith("dir", StringComparison.OrdinalIgnoreCase)) // Dir(=Route) -> dir/(start)/(point)/---/(goal)/(centroid)
             {
                 _query = "rtp=";
-                for (int i = 1; i < param.Length - 2; i++)
+                int points = (param[param.Length - 2].Contains("@")) ? param.Length - 3 : param.Length - 4;
+                for (int i = 1; i < 1 + points; i++)
                     _query += getWaypoint(param[i]) + "~";
-                _query.Remove(_query.Length - 1);
-                _query += getCentroid(param[param.Length - 2]);
+                _query.Remove(_query.Length - 1); // remove last "~"
+                _query += getCentroid(param[points + 1]);
             }
 
             return _query;
