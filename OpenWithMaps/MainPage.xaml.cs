@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.Storage;
 using Windows.ApplicationModel;
 using Windows.System;
+using Windows.Services.Store;
 
 
 // 空白ページのアイテム テンプレートについては、http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 を参照してください
@@ -28,15 +29,12 @@ namespace OpenWithMaps
 
         private async void RateButton_Click(object sender, RoutedEventArgs e)
         {
-            Uri uriReview = new Uri(@"ms-windows-store://review/?ProductId=9nblggh6jz60");
-            bool success = await Launcher.LaunchUriAsync(uriReview);
+            // https://docs.microsoft.com/en-us/windows/uwp/monetize/request-ratings-and-reviews
+            var success = await StoreContext.GetDefault().RequestRateAndReviewAppAsync();
         }
 
         private async void FeedbackButton_Click(object sender, RoutedEventArgs e)
         {
-            //Uri uriFeedback = new Uri($"feedback-hub://?tabid=2&appid={Package.Current.Id.FamilyName}!App");
-            //bool success = await Launcher.LaunchUriAsync(uriFeedback);
-
             //// https://docs.microsoft.com/en-us/windows/uwp/monetize/launch-feedback-hub-from-your-app
             var launcher = Microsoft.Services.Store.Engagement.StoreServicesFeedbackLauncher.GetDefault();
             await launcher.LaunchAsync();
