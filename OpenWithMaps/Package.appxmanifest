@@ -40,7 +40,6 @@
           <uap:ShareTarget>
             <uap:DataFormat>Text</uap:DataFormat>
             <uap:DataFormat>WebLink</uap:DataFormat>
-            <uap:SupportedFileTypes/>
           </uap:ShareTarget>
         </uap:Extension>
       </Extensions>
