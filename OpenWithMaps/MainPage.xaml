@@ -21,18 +21,14 @@
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <Border Margin="8" Width="48" Height="48" Background="#FF0078D7">
-                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72D;" FontSize="36" Foreground="White" />
-                            </Border>
+                            <FontIcon Margin="8" Glyph="&#xE72D;" FontSize="48" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" />
                             <StackPanel>
                                 <TextBlock Margin="8,4,0,0" Text="2. Share" Style="{StaticResource SubtitleTextBlockStyle}"/>
                                 <TextBlock Margin="16,4,0,0" Text="Select [Share] in the menu." TextWrapping="Wrap"/>
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <Border Margin="8" Width="48" Height="48" Background="#FF0078D7">
-                                <Image Margin="6" Source="Assets/OpenWithMaps.png"/>
-                            </Border>
+                            <Image Margin="8" Height="48" Source="Assets/ic_fluent_location_28_filled.png"/>
                             <StackPanel>
                                 <TextBlock Margin="8,4,0,0" Text="3. Select" Style="{StaticResource SubtitleTextBlockStyle}"/>
                                 <TextBlock Margin="16,4,0,0" Text="Tap [Open with Maps]." TextWrapping="Wrap"/>

@@ -151,7 +151,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Icon.png" />
-    <Content Include="Assets\OpenWithMaps.png" />
     <Content Include="Assets\Icon.targetsize-16.png" />
     <Content Include="Assets\Icon.targetsize-256.png" />
     <Content Include="Assets\Icon.targetsize-32.png" />
@@ -159,6 +158,7 @@
     <None Include="Package.StoreAssociation.xml">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Assets\ic_fluent_location_28_filled.png" />
     <Content Include="Assets\MicrosoftEdge.png" />
     <Content Include="Assets\NewStoreLogo.scale-100.png" />
     <Content Include="Assets\NewStoreLogo.scale-125.png" />
@@ -180,6 +180,11 @@
     <Content Include="Assets\Square310x310Logo.scale-150.png" />
     <Content Include="Assets\Square310x310Logo.scale-200.png" />
     <Content Include="Assets\Square310x310Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png" />
     <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-16.png" />
     <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-24.png" />
     <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-256.png" />
