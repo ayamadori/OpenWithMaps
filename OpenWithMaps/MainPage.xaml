@@ -51,7 +51,7 @@
                 <StackPanel Margin="8">
                     <TextBlock Text="Open with Maps&#xA;Version 1.3.9&#xA;Copyright © Ayamadori" TextWrapping="Wrap"/>
                     <HyperlinkButton Content="Website" NavigateUri="https://github.com/ayamadori/OpenWithMaps" HorizontalContentAlignment="Left" Margin="0,8,0,0"/>
-                    <HyperlinkButton Content="Privacy Policy" NavigateUri="https://ayamadori.github.io/OpenWithMaps/PrivacyPolicy.html" HorizontalContentAlignment="Left"/>
+                    <HyperlinkButton Content="Privacy Policy" NavigateUri="https://ayamadori.github.io/OpenWithMaps/PRIVACY.html" HorizontalContentAlignment="Left"/>
                     <Button x:Name="RateButton" Margin="0,12,0,0" Click="RateButton_Click">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
@@ -63,7 +63,7 @@
                     <Button x:Name="FeedbackButton" Margin="0,12,0,0" Click="FeedbackButton_Click" Visibility="Collapsed">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
-                                <FontIcon Glyph="&#xE939;" Margin="0,0,8,0"/>
+                                <FontIcon Glyph="&#xED15;" Margin="0,0,8,0"/>
                                 <TextBlock Text="Send feedback"/>
                             </StackPanel>
                         </Button.Content>
