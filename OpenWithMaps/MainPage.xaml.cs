@@ -65,7 +65,7 @@ namespace OpenWithMaps
         private async void DonateButton_Click(object sender, RoutedEventArgs e)
         {
             StoreContext storeContext = StoreContext.GetDefault();
-            string StoreId = "9PFX1DR44QZC";
+            string StoreId = "9P4Z78F1TJZK";
             StorePurchaseResult result = await storeContext.RequestPurchaseAsync(StoreId);
             if (result.ExtendedError != null)
             {
