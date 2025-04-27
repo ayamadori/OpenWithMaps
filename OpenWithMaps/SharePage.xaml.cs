@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
 using Windows.Storage;
+using Windows.System;
 using Windows.System.Profile;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -30,7 +31,6 @@ namespace OpenWithMaps
 
             string _bingquery = "";
             GoogleMapsConverter google = new GoogleMapsConverter();
-            BingMapsConverter bing = new BingMapsConverter();
             YahooMapsJpConverter yahoojp = new YahooMapsJpConverter();
 
             // refer to https://msdn.microsoft.com/en-us/library/windows/apps/mt243292.aspx
@@ -55,11 +55,6 @@ namespace OpenWithMaps
                     {
                         Debug.WriteLine("This URI is in Yahoo Maps(Japan)");
                         _bingquery = yahoojp.GetQuery(_link, _title);
-                    }
-                    else if (bing.IsMapURI(_link))
-                    {
-                        Debug.WriteLine("This URI is in Bing Maps");
-                        _bingquery = bing.GetQuery(_link, _title);
                     }
                     else
                     {
@@ -93,13 +88,9 @@ namespace OpenWithMaps
             }
 
             // Open Maps app
-            // refer to https://msdn.microsoft.com/library/windows/apps/mt228341
-            var uriBingMaps = new Uri(@"bingmaps:?" + _bingquery);
-
-            // Launch the Windows Maps app
-            var launcherOptions = new Windows.System.LauncherOptions();
-            launcherOptions.TargetApplicationPackageFamilyName = "Microsoft.WindowsMaps_8wekyb3d8bbwe";
-            var success = await Windows.System.Launcher.LaunchUriAsync(uriBingMaps, launcherOptions);
+            // refer to https://learn.microsoft.com/ja-jp/windows/apps/develop/launch/launch-maps-app
+            var uriBingMaps = new Uri(@"https://www.bing.com/maps?" + _bingquery);
+            var success = await Launcher.LaunchUriAsync(uriBingMaps);
 
             // Exit app
             Application.Current.Exit();

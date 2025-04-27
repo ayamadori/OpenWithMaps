@@ -47,21 +47,6 @@ namespace OpenWithMaps
             var success = await Launcher.LaunchUriAsync(uriBrowser);
         }
 
-        private async void OpenFileButton_Click(object sender, RoutedEventArgs e)
-        {
-            // FileOpenPicker
-            // https://msdn.microsoft.com/ja-jp/library/windows/apps/mt186456.aspx
-
-            var picker = new Windows.Storage.Pickers.FileOpenPicker();
-            picker.FileTypeFilter.Add(".kml");
-            picker.FileTypeFilter.Add(".kmz");
-            StorageFile file = await picker.PickSingleFileAsync();
-
-            if (file != null)
-            {
-                Frame.Navigate(typeof(SharePage), file);
-            }
-        }
         private async void DonateButton_Click(object sender, RoutedEventArgs e)
         {
             StoreContext storeContext = StoreContext.GetDefault();

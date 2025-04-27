@@ -34,16 +34,8 @@
                                 <TextBlock Margin="16,4,0,0" Text="Tap [Open with Maps]." TextWrapping="Wrap"/>
                             </StackPanel>
                         </StackPanel>
-                        <TextBlock Margin="8" Text="Place, Search, Route related with URL or Text is shown in the Maps app." TextWrapping="WrapWholeWords"/>
+                        <TextBlock Margin="8" Text="Place, Search, Route related with URL or Text is shown in the Bing Maps website." TextWrapping="WrapWholeWords"/>
                         <Button Margin="8" x:Name="OpenBrowserButton" Content="Let's start!&#xa;(Open browser)" HorizontalAlignment="Stretch" Click="OpenBrowserButton_Click"/>
-
-                        <TextBlock Margin="8,24,8,8" Text="Open KML/KMZ file" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                        <StackPanel Orientation="Horizontal">
-                            <Image Margin="8" Height="48" Source="Assets/Icon.png"/>
-                            <TextBlock Margin="8" Text="Double-click KML/KMZ file."/>
-                        </StackPanel>
-                        <TextBlock Margin="8" Text="Collection is shown in the Maps app." TextWrapping="Wrap"/>
-                        <Button Margin="8" x:Name="OpenFileButton" Content="Let's start!&#xa;(Select KML/KMZ file)" HorizontalAlignment="Stretch" Click="OpenFileButton_Click"/>
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>

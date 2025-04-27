@@ -132,7 +132,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BingMapsConverter.cs" />
     <Compile Include="GoogleMapsConverter.cs" />
     <Compile Include="KmlConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
