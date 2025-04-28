@@ -70,24 +70,8 @@ namespace OpenWithMaps
                     _bingquery = "where=" + Uri.EscapeDataString(_query);
                 }
             }
-            else if (e.Parameter is StorageFile) // KML/KMZ file
-            {
-                KmlConverter kmlfile = new KmlConverter(e.Parameter as StorageFile);
-                _bingquery = await kmlfile.ParseAsync();
 
-                if (_bingquery == null)
-                {
-                    var dlg = new MessageDialog("The app can NOT open this file.", "Unsupported file");
-                    await dlg.ShowAsync();
-
-                    // Exit app
-                    Application.Current.Exit();
-
-                    return;
-                }
-            }
-
-            // Open Maps app
+            // Open Bing Maps website
             // refer to https://learn.microsoft.com/ja-jp/windows/apps/develop/launch/launch-maps-app
             var uriBingMaps = new Uri(@"https://www.bing.com/maps?" + _bingquery);
             var success = await Launcher.LaunchUriAsync(uriBingMaps);
