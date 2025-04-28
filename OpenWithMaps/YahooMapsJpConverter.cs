@@ -9,16 +9,14 @@ namespace OpenWithMaps
 {
     class YahooMapsJpConverter : MapConverter
     {
-        // refer to http://user.numazu-ct.ac.jp/~tsato/tsato/geoweb/yahoo_olp/djws/url_arg.html
-
-        private const string uriRegExp = @"^http://map(s\.loco)?\.yahoo\.co\.jp/(maps)|(mobile)";
-        private const string intentRegExp = @"^intent:.*http:%2F%2Floco.yahoo.co.jp%2Fplace";
+        private const string uriRegExp = @"^https://map.yahoo.co.jp";
+        //private const string intentRegExp = @"^intent:.*http:%2F%2Fmap.yahoo.co.jp";
         private double zoomAdjust = -0.5;
 
         public override bool IsMapURI(string uri)
         {
-            return Regex.IsMatch(uri, uriRegExp, RegexOptions.IgnoreCase)
-                | Regex.IsMatch(uri, intentRegExp, RegexOptions.IgnoreCase);
+            return Regex.IsMatch(uri, uriRegExp, RegexOptions.IgnoreCase);
+                //| Regex.IsMatch(uri, intentRegExp, RegexOptions.IgnoreCase);
         }
 
         public override string GetQuery(string uri, string title)
@@ -42,7 +40,7 @@ namespace OpenWithMaps
                     lon = (_p.Split('='))[1];
                     _query += "~" + lon;
                 }
-                else if (_p.StartsWith("z=")) // Zoom Level
+                else if (_p.StartsWith("zoom=")) // Zoom Level
                     _query += "&lvl=" + (double.Parse((_p.Split('='))[1]) + zoomAdjust);
             }
 
