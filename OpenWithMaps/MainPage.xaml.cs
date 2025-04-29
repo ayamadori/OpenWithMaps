@@ -1,8 +1,6 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.Storage;
-using Windows.ApplicationModel;
 using Windows.System;
 using Windows.Services.Store;
 using System.Diagnostics;
