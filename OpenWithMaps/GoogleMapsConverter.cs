@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Text.RegularExpressions;
 
 namespace OpenWithMaps
@@ -42,11 +43,24 @@ namespace OpenWithMaps
 
         // Get Centroid
         // ->  @(latitude),(longitude),(zoomlevel)z
+        // ->  @(latitude),(longitude),(actual length of the window height)m
         private string getCentroid(string param)
         {
             string _centroid = "";
-            string[] point = param.Split(new char[] { '@', ',', 'z' }, StringSplitOptions.RemoveEmptyEntries);
-            _centroid = $"&cp={point[0]}~{point[1]}&lvl={double.Parse(point[2]) + zoomAdjust}";
+            string[] point = param.Split(new char[] { '@', ',' }, StringSplitOptions.RemoveEmptyEntries);
+            if (point[2].IndexOf("z") > 0)
+            {
+                string level = point[2].Trim('z');
+                _centroid = $"&cp={point[0]}~{point[1]}&lvl={double.Parse(level) + zoomAdjust}";
+            }
+            else
+            {
+                ////https://learn.microsoft.com/ja-jp/bingmaps/articles/understanding-scale-and-resolution
+                //double level = Math.Log(156543.04 * Math.Cos(double.Parse(point[0]) * Math.PI / 180) / double.Parse(point[2].Trim('m')), 2);
+                //_centroid = $"&cp={point[0]}~{point[1]}&lvl={level + zoomAdjust}";
+                _centroid = $"&cp={point[0]}~{point[1]}";
+            }
+
             return _centroid;
         }
 
